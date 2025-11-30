@@ -82,27 +82,7 @@ public class SignUp extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Password not matched. Please try again.");
 //                System.out.println(pass);
             } else {
-                try {
-                    Conn c = new Conn();
-                    String checkQuery = "SELECT * FROM login WHERE username = '" + user + "'";
-                    ResultSet checkRs = c.s.executeQuery(checkQuery);
-
-                    if (checkRs.next()) {
-                        // Username already exists, show a message
-                        JOptionPane.showMessageDialog(null, "Username already exists. Choose a different username.");
-                    } else {
-                        // Username is unique, insert data into the database
-                        String insertQuery = "INSERT INTO login(username, password) VALUES ('" + user + "', '" + pass + "')";
-                        int rowsAffected = c.s.executeUpdate(insertQuery);
-
-                        if (rowsAffected > 0) {
-                            // Registration successful, proceed to login
-                            setVisible(false);
-                            new Dashboard().setVisible(true);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Error in registration. Please try again.");
-                        }
-                    }
+              
                 }catch (Exception e) {
                 e.printStackTrace();
             }
